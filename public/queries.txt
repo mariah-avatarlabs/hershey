@@ -1,0 +1,18 @@
+create database hershey;
+use hershey;
+
+CREATE TABLE `Users` (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`firstname` VARCHAR(60) NOT NULL,
+`lastname` VARCHAR(60) NOT NULL,
+`email` VARCHAR(50),
+`prize_id` INT(6)
+);
+
+CREATE TABLE `Prizes` (
+`id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`time_won` TIMESTAMP, 
+`time_claimed` TIMESTAMP 
+);
+
+INSERT INTO Prizes(id,name) VALUES(200,'Jason');

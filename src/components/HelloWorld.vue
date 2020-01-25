@@ -31,11 +31,59 @@
 </template>
 
 <script>
+import axios from 'axios';
+const instance = axios.create({
+  baseURL: 'http://localhost:8080/hershey/'
+});
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+
+  mounted(){
+
+    // console.log('onMount')
+    instance.get('api/test.php')
+      .then((res) => {
+        alert('response: ', res.data);
+
+      })
+      .catch((err) => {
+        alert('error: ', err)
+      })
+  },
+
+ methods: {
+
+   createUser(){
+  //    let userData = {
+  //      'firstname': fn,
+  //      'lastname': ln,
+  //      'email': email,
+  //    };
+
+      // axios({
+      //     method: 'post',
+      //     url: 'api/test.php',
+      //     data: formData,
+      //     config: { headers: {'Content-Type': 'multipart/form-data' }}
+      // })
+      // .then(function (response) {
+      //     //handle success
+      //     console.log(response)
+      //     app.contacts.push(contact)
+      //     app.resetForm();
+      // })
+      // .catch(function (response) {
+      //     //handle error
+      //     console.log(response)
+      // });
+
+   }
+   
+ } 
 }
 </script>
 
