@@ -33,9 +33,13 @@
 <script>
 import axios from 'axios';
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/hershey/'
+  baseURL: '/api/',
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+  }
 });
-
 export default {
   name: 'HelloWorld',
   props: {
@@ -43,43 +47,30 @@ export default {
   },
 
   mounted(){
-
-    // console.log('onMount')
-    instance.get('api/test.php')
-      .then((res) => {
-        alert('response: ', res.data);
-
-      })
-      .catch((err) => {
-        alert('error: ', err)
-      })
+    this.createUser();
+      
   },
 
  methods: {
 
    createUser(){
-  //    let userData = {
-  //      'firstname': fn,
-  //      'lastname': ln,
-  //      'email': email,
-  //    };
+     let userData = {
+       'firstname': "testB",
+       'lastname': "testC",
+       'email': "testD",
+     };
 
-      // axios({
-      //     method: 'post',
-      //     url: 'api/test.php',
-      //     data: formData,
-      //     config: { headers: {'Content-Type': 'multipart/form-data' }}
-      // })
-      // .then(function (response) {
-      //     //handle success
-      //     console.log(response)
-      //     app.contacts.push(contact)
-      //     app.resetForm();
-      // })
-      // .catch(function (response) {
-      //     //handle error
-      //     console.log(response)
-      // });
+      instance({
+          method: 'post',
+          url: 'hershey_api/index.php',
+          data: userData,
+      })
+      .then(function () {
+          //handle success
+      })
+      .catch(function () {
+          //handle error
+      });
 
    }
    
