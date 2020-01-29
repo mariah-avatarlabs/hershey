@@ -34,6 +34,7 @@ export default {
       this.getResults()
         .then((hasWon) => {
           // question - vue check is this correct?
+          // check session
           console.log('hasWon: ', this.$router, hasWon);
           this.$router.push('results')
 

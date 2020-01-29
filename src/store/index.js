@@ -15,6 +15,12 @@ export default new Vuex.Store({
     }
   },
 
+  getters: {
+    isWinner: state => {
+      return state.session.winner;
+    }
+  },
+
   mutations: {
     assignWinResults(state, payload){
       state.session.winner = payload.won;
