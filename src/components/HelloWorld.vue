@@ -32,7 +32,7 @@
 
 <script>
 import axios from 'axios';
-const instance = axios.create({
+var instance = axios.create({
   baseURL: '/api/',
   headers: {
     "Access-Control-Allow-Origin": "*",
@@ -47,25 +47,47 @@ export default {
   },
 
   mounted(){
-    this.createUser();
-      
+      this.createUser();
   },
 
  methods: {
 
-   createUser(){
-     let userData = {
-       'firstname': "testB",
-       'lastname': "testC",
-       'email': "testD",
-     };
+   getUser(){
+    
+    var userData = new FormData();
+    userData.append('action', 'retrieve');
+    userData.append('email', 'email');
 
-      instance({
-          method: 'post',
-          url: 'hershey_api/index.php',
-          data: userData,
+    instance({
+      method: 'post',
+      url: 'hershey_api/user',
+      data: userData
+    }).then(function (res) {
+        // alert('response: ', res);
+        console.log('res: ', res)
+          //handle success
       })
-      .then(function () {
+      .catch(function (er) {
+          alert('fail: ', er);
+          //handle error
+      });
+
+   },
+
+   createUser(){
+    
+    var userData = new FormData();
+
+    userData.append('action', 'create');
+    userData.append('firstname', 'testC');
+    userData.append('lastname', 'testB');
+    userData.append('email', 'testD');
+
+    instance({
+      method: 'post',
+      url: 'hershey_api/index.php',
+      data: userData
+    }).then(function () {
           //handle success
       })
       .catch(function () {

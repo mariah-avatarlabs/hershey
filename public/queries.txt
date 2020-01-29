@@ -11,8 +11,24 @@ CREATE TABLE `Users` (
 
 CREATE TABLE `Prizes` (
 `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-`time_won` TIMESTAMP, 
-`time_claimed` TIMESTAMP 
+`time_won` TIMESTAMP NULL DEFAULT NULL, 
+`time_claimed` TIMESTAMP NULL DEFAULT NULL
 );
 
 INSERT INTO Prizes(id,name) VALUES(200,'Jason');
+
+SELECT * FROM Users WHERE ID = 1
+
+CREATE PROCEDURE bulk_insert()
+BEGIN
+    DECLARE i int DEFAULT 1;
+    WHILE i <= 250 DO
+        INSERT INTO Prizes VALUES (i);
+        SET i = i + 1;
+    END WHILE;
+END
+
+NULL
+
+INSERT INTO Prizes(time_won, time_claimed) VALUES(NULL, NULL);
+ALTER TABLE Prizes MODIFY COLUMN time_won TIMESTAMP NULL DEFAULT NULL;
