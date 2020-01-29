@@ -3,25 +3,14 @@
         <h1>Intro</h1>
         <Button 
           label="Try Your Luck"
+          :callback="isWinner"
         />
     </div>
 </template>
 
 <script>
 import Button from '../components/shared/Button'
-
-import axios from 'axios';
-import { mapMutations } from 'vuex';
-
-var instance = axios.create({
-  baseURL: '/api/',
-  crossdomain: true,
-  headers: {
-    "Access-Control-Allow-Origin": "*",
-    'Content-Type': 'application/json',
-    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-  }
-});
+import { mapActions } from 'vuex';
 
 
 export default {
@@ -29,34 +18,31 @@ export default {
   components: {
     Button
   },
-  mounted(){
-    this.isWinner();
-    console.log('this: ', this)
-},
-  methods: {
-    ...mapMutations(['assignWinResults']),
-    isWinner(){
-      console.log('called');
-      // see if available prizes
 
+  mounted(){
+    console.log('this: ', this)
+  },
+
+  methods: {
+    // ...mapMutations(['assignWinResults']),
+    ...mapActions(['getResults']),
+
+    isWinner(){
       var userData = new FormData();
       userData.append('action', 'won');
-      // var _this = this;
-
-      instance({
-        method: 'post',
-        url: 'hershey_api/',
-        data: userData
-      }).then( (res) => {
-          console.log('res: ', res)
-          this.assignWinResults(res.data);
+       
+      this.getResults()
+        .then((hasWon) => {
+          // question - vue check is this correct?
+          console.log('hasWon: ', this.$router, hasWon);
+          this.$router.push('results')
 
         })
-        .catch( (er) => {
-            // alert('fail: ', er);
-            console.log('er: ', er)
-            //handle error
-        });
+        .catch( () => {
+
+        })
+
+    
 
 
     }

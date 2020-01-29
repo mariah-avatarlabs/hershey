@@ -1,6 +1,8 @@
 <template>
   <button
-    class="button">
+    class="button"
+    @click="callback"
+  >
       <p>{{label}}</p>
   </button>
 </template>
