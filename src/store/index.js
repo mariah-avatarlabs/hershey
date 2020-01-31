@@ -76,6 +76,8 @@ export default new Vuex.Store({
       userAction.append('email', userData.email);
       userAction.append('prizeID', userData.selectedPrizeId);
 
+      console.log('prizeID: ', userData)
+
       return new Promise((resolve, reject) => {
 
         app()({

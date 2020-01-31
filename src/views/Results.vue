@@ -71,7 +71,8 @@ export default {
         firstname: "",
         lastname: "",
         email: "",
-        selectedPrizeId: this.prizeId
+        // selectedPrizeId: this.prizeId -> Not working???
+        selectedPrizeId: this.$store.state.session.prizeID
       }
     }
   },
@@ -88,8 +89,9 @@ export default {
     ...mapActions(['createUser']),
     
     submitData(){
-      console.log('userdata: ', this.userData)
+      console.log('userdata: ', this)
       this.createUser(this.userData)
+      
         .then((data) => {
           if(data.user){
             console.log('made user: ', this);
