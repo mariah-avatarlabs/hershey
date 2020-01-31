@@ -70,7 +70,7 @@ export default new Vuex.Store({
     createUser({commit}, userData ){
 
       var userAction = new FormData();
-      userAction.append('action', 'createUser');
+      userAction.append('action', 'claim');
       userAction.append('firstname', userData.firstname);
       userAction.append('lastname', userData.lastname);
       userAction.append('email', userData.email);

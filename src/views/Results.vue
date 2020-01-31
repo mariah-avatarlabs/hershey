@@ -66,7 +66,7 @@ export default {
 
   data(){
     return {
-      isWinner: true,
+      isWinner: this.$store.state.session.winner,
       userData: {
         firstname: "",
         lastname: "",
@@ -93,8 +93,8 @@ export default {
       this.createUser(this.userData)
       
         .then((data) => {
-          if(data.user){
-            console.log('made user: ', this);
+          if(data.error){
+            console.log('made user: ', this, data);
             this.$router.push('confirmation')
           }
 
