@@ -1,6 +1,8 @@
 <template>
     <div id="intro" class="page">
-        <h1>Intro</h1>
+        <h1>Get your reese easter eggs</h1>
+        <p class="sub-copy">Tap below to asee if you're a winner</p>
+        <div>image</div>
         <Button 
           label="Try Your Luck"
           :callback="isWinner"

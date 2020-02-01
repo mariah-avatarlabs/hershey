@@ -1,9 +1,8 @@
 <template>
     <div id="results" class="page">
-        <h1>Results</h1>
-
         <template v-if="isWinner">
-          <h2>Winner</h2>
+          <h2>You Won!</h2>
+          <p class="sub-copy">Fill out the following info and we'll mail you the prize!</p>
 
           <div id="user-form">
 
@@ -47,7 +46,10 @@
         </template>
 
         <template v-else>
-          <h2>Loser</h2>
+          <h2>Sorry!</h2>
+          <p class="sub-copy">you are not a winner today</p>
+          <div></div>
+          <p class="sub-copy">try again next time</p>
 
         </template>
 
